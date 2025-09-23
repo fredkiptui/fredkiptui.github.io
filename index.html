@@ -1,226 +1,457 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fred Kiptui — Techmsafi | Smart Design, Smart Code</title>
+  <link rel="icon" href="Assets/logo.png" />
+  <meta name="description" content="Techmsafi — Clean, smart digital solutions. Graphic design & web development by Fred Kiptui." />
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/remixicons/fonts/remixicon.css">
-    <link rel="stylesheet" href="assets/css/aos.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Fonts (system + fallback) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <style>
+    /* ---------- Variables ---------- */
+    :root{
+      --bg:#0b1220;
+      --tech-blue:#0A66C2;
+      --clean-green:#00C853;
+      --muted:#9aa4b2;
+      --glass: rgba(255,255,255,0.04);
+      --card: rgba(255,255,255,0.02);
+      --radius:14px;
+      --ff-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
 
-    <title>Fred Kiptui</title>
+    /* ---------- Reset ---------- */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body,#app{height:100%}
+    body{font-family:var(--ff-sans);background:linear-gradient(180deg,var(--bg) 0%, #07111a 100%);color:#e6eef6;line-height:1.45;-webkit-font-smoothing:antialiased}
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* ---------- Layout ---------- */
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+
+    header{position:sticky;top:12px;z-index:60}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:12px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;backdrop-filter:blur(6px)}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{width:48px;height:48px;border-radius:10px;object-fit:cover}
+    .brand h1{font-size:18px;margin:0}
+    .brand p{font-size:11px;margin-top:2px;color:var(--muted)}
+
+    nav ul{display:flex;gap:10px;align-items:center;list-style:none}
+    nav a{padding:8px 12px;border-radius:10px;font-weight:600;color:var(--muted);font-size:14px}
+    nav a:hover{color:#fff;background:rgba(255,255,255,0.03)}
+
+    .cta{background:linear-gradient(90deg,var(--tech-blue),var(--clean-green));padding:8px 14px;border-radius:12px;color:#fff;font-weight:700}
+
+    /* ---------- Hero ---------- */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:40px 4px}
+    .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:28px;border-radius:var(--radius);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    .hero h2{font-size:28px;margin-bottom:10px}
+    .hero p.lead{color:var(--muted);margin-bottom:16px}
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+    .btn{padding:10px 16px;border-radius:12px;font-weight:700;cursor:pointer;border:0}
+    .btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    .btn-primary{background:linear-gradient(90deg,var(--tech-blue),var(--clean-green));color:#fff}
+
+    .photo-frame{display:flex;justify-content:center;align-items:center;padding:18px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));border-radius:16px}
+    .photo-frame img{width:320px;height:320px;border-radius:16px;object-fit:cover;border:4px solid rgba(255,255,255,0.03)}
+
+    /* ---------- Sections ---------- */
+    section{margin-top:28px}
+    .section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+    .section-title h3{font-size:20px}
+    .quick-actions{display:flex;gap:8px}
+    .quick-actions button{background:rgba(255,255,255,0.03);border-radius:10px;padding:8px 12px;font-weight:700;color:#fff}
+
+    /* ---------- Services grid ---------- */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .card{background:var(--card);padding:16px;border-radius:12px}
+    .card h4{margin-bottom:8px}
+    .muted{color:var(--muted);font-size:14px}
+
+    /* ---------- Portfolio ---------- */
+    .filters{display:flex;gap:8px;margin-bottom:12px}
+    .filter{padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.02);cursor:pointer}
+    .filter.active{background:linear-gradient(90deg,var(--tech-blue),var(--clean-green));color:#fff}
+
+    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .project{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;overflow:hidden;cursor:pointer}
+    .project .meta{padding:10px}
+    .project h4{margin-bottom:6px}
+    .project p{color:var(--muted);font-size:13px}
+
+    /* ---------- Modal ---------- */
+    .modal{position:fixed;inset:0;background:rgba(3,6,11,0.8);display:none;align-items:center;justify-content:center;padding:28px;z-index:120}
+    .modal.show{display:flex}
+    .modal-content{max-width:1000px;width:100%;background:linear-gradient(180deg,#07121c, #071722);padding:14px;border-radius:12px}
+    .modal-body{display:grid;grid-template-columns:1fr 360px;gap:12px}
+    .modal-body img{width:100%;height:100%;object-fit:contain;border-radius:8px}
+    .modal-info{padding:8px}
+    .close-btn{background:transparent;border:0;color:var(--muted);font-weight:700;cursor:pointer}
+
+    /* ---------- Contact ---------- */
+    .contact-card{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00))}
+    .form input,.form textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:#e6eef6}
+    .form textarea{min-height:120px}
+
+    footer{margin-top:28px;text-align:center;padding:18px;color:var(--muted)}
+
+    /* ---------- Responsive ---------- */
+    @media(max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .hero .photo-frame img{width:260px;height:260px}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .portfolio-grid{grid-template-columns:repeat(2,1fr)}
+      .modal-body{grid-template-columns:1fr}
+    }
+    @media(max-width:640px){
+      .nav{padding:10px}
+      nav ul{display:none}
+      .mobile-toggle{display:block}
+      .container{padding:18px}
+      .grid{grid-template-columns:1fr}
+      .portfolio-grid{grid-template-columns:1fr}
+      .contact-card{grid-template-columns:1fr}
+      .brand h1{font-size:16px}
+    }
+
+    /* Mobile toggle */
+    .mobile-toggle{display:none;background:transparent;border:0;color:#fff;font-weight:800}
+    .mobile-menu{display:none;flex-direction:column;gap:8px;padding-top:12px}
+    .mobile-menu.show{display:flex}
+
+  </style>
 </head>
-
 <body>
-    <!-- <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon" style="background-color:green"></span>
-          </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    <a class="nav-link" href="#">Features</a>
-                    <a class="nav-link" href="#">Pricing</a>
-                    <a class="nav-link disabled">Disabled</a>
-                </div>
+  <div id="app">
+    <div class="container">
+      <header>
+        <div class="nav">
+          <div class="brand">
+            <img src="Assets/logo.png" alt="Techmsafi logo">
+            <div>
+              <h1>Techmsafi</h1>
+              <p>Smart Design, Smart Code</p>
             </div>
-        </div>
-    </nav> -->
+          </div>
 
-    <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
-                <img src="assets/img/logo.png" alt="Fred Kiptui" width="100px" height="50px">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon" style="background-color:green"></span>
-          </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <ul class="navbar-nav ms-1g-4">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#services">Work</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://techmsafi.com/fredkiptui" style="color: blue;">Portfolio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://techmsafi.com" target="_blank">Blog</a>
-                    </li>
-                </ul>
-                <div class="social-links ms-auto">
-                    <a href="https://facebook.com/techmsafi" target="_blank"><i class="ri-facebook-fill"></i></a>
-                    <a href="https://twitter.com/techmsafi" target="_blank"><i class="ri-twitter-fill"></i></a>
-                    <a href="https://github.com/fredkiptui" target="_blank"><i class="ri-github-fill"></i></a>
-                    <a href="https://youtube.com/c/TechMsafi" target="_blank"><i class="ri-youtube-fill"></i></a>
-                    <a href="https://www.linkedin.com/in/fredkiptui" target="_blank"><i class="ri-linkedin-fill"></i></a>
-                    <a href="https://t.me/techmsafi" target="_blank"><i class="ri-telegram-fill"></i></a>
-                </div>
+          <nav>
+            <ul>
+              <li><a href="#about">About</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#portfolio">Portfolio</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li><a class="cta" href="#contact">Hire Me</a></li>
+            </ul>
+            <button class="mobile-toggle" aria-label="menu">☰</button>
+          </nav>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#contact">Contact</a>
+          <a class="cta" href="#contact">Hire Me</a>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero">
+          <div class="hero-card">
+            <h2>Hi, I’m <strong>Fred Kiptui</strong> — Founder & Creative Lead at Techmsafi</h2>
+            <p class="lead">I design clean, smart brands and build future-ready websites for businesses and individuals. My work blends visual craft with solid code to help you stand out online.</p>
+
+            <div class="actions">
+              <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
+              <a class="btn btn-outline" href="Assets/Fred.PNG" download>Download CV Photo</a>
+              <a class="btn btn-outline" href="https://fredgraphics.vercel.app" target="_blank">See Graphic Portfolio</a>
             </div>
-        </div>
-    </nav>
-    <!-- ABOUT -->
-    <section id="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5" data-aos="fade-up">
-                    <div class="intro mb-4">
-                        <div class="hr-line"></div>
-                        <h5>Hello, I am</h5>
-                        <h1 class="display-4">FRED KIPTALAM KIPTUI</h1>
-                        <h3 class="display-4">About Me:</h3>
-                    </div>
-                    <p style="font-weight: 600;">
-                        I am a passionate, curious, and creative software developer interested in becoming part of like-minded groups and communities working together to solve a specific problem using software development technologies. If you are looking for someone to help
-                        you on your software journey, you have come to the right place, as I will mentor you and give you valuable advice to help you find your way in the software development field.
-                        <br>
-                        <br> I am a member of several tech communities, such as SpaceYaTech and ReactDevske. I want to say that these communities have helped me grow, both publicly and professionally.
-                        <br> Networking has made me realize that I need to develop my skills even further. Also, I know that what I know does not mean that others know it too. This gives me the opportunity to share my knowledge and ideas with others,
-                        which can be very helpful in developing an innovative idea. <b> <i>"Do not underestimate the power of teamwork,"</b> </i>is what I have heard people say.
-                        <br>
-                        <br> For those of you reading now, my advice is that if you are not part of the tech community yet, you should take the chance and become part of all the tech communities you find, e.g., on Meetup, Eventbrite, GDSC, Kommunity and
-                        other platforms.
-                        <br>
-                        <br> <br> If you would like to reach me for a fireside chat, email me: <b>fredkiptui.58@gmail.com </b>
-                        <br> or connect with me through my portfolio.
 
-                    </p>
-                    <a href="https://techmsafi.com/fredkiptui" class="btn btn-outline-dark" target="_blank">
-                        <span style="font-size: 30px">CONNECT WITH ME</span>
-                    </a>
+            <div style="margin-top:18px">
+              <div class="section-title">
+                <h3>Quick access</h3>
+                <div class="quick-actions">
+                  <button onclick="filterCategory('websites')">Websites</button>
+                  <button onclick="filterCategory('graphics')">Graphic Design</button>
                 </div>
-                <div class="col-lg-6 offset-lg-1">
-                    <img src="assets/img/about_me.png" alt=" ">
+              </div>
+
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <div class="card" style="flex:1;min-width:220px">
+                  <h4>Featured websites</h4>
+                  <p class="muted">Shama Consult Africa, Africa Centre for Project Knowledge & Techniques</p>
                 </div>
+                <div class="card" style="flex:1;min-width:220px">
+                  <h4>Graphic design</h4>
+                  <p class="muted">Posters, logos, banners, and branding kits</p>
+                </div>
+              </div>
             </div>
-        </div>
-    </section>
+          </div>
 
-    <!-- <section id="services">
-        <div class="container">
-            <div class="row">
-                <div class="col-12" data-aos="fade-up">
-                    <div class="intro text-center">
-                        <div class="hr-line"></div>
-                        <h1 class="display-4">WHAT I AM CURRENTLY DOING</h1>
-                        <p class="mx-auto">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                    </div>
-                </div>
-                <div class="row gy-4">
-                    <div class="col-lg-6" data-aos="fade-up">
-                        <div class="service">
-                            <div class="icon">
-                                <i class="ri-pencil-ruler-2-fill"></i>
-                            </div>
-                            <div>
-                                <h4>Service title</h4>
-                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less</p>
-                                <a href="#" class="link-arrow">Read More <i class="ri-arrow-right-up-line"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-                        <div class="service">
-                            <div class="icon">
-                                <i class="ri-cup-fill"></i>
-                            </div>
-                            <div>
-                                <h4>Service title</h4>
-                                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less</p>
-                                <a href="#" class="link-arrow">Read More <i class="ri-arrow-right-up-line"></i> </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          <div class="photo-frame">
+            <img src="Assets/Fred.PNG" alt="Fred Kiptui">
+          </div>
+        </section>
+
+        <section id="about">
+          <div class="section-title"><h3>About Techmsafi</h3></div>
+          <div class="hero-card muted">
+            <p>Techmsafi (Tech + Msafi) — clean, smart digital solutions. We deliver branding, graphic design and WordPress-based websites tailored for small businesses and consultancies. Our primary colors are Tech Blue (<code>#0A66C2</code>) and Clean Green (<code>#00C853</code>).</p>
+          </div>
+        </section>
+
+        <section id="services">
+          <div class="section-title"><h3>Services</h3></div>
+          <div class="grid">
+            <div class="card">
+              <h4>Branding & Logo</h4>
+              <p class="muted">Logo design, color systems, typography, brand guidelines.</p>
             </div>
-        </div>
-    </section> -->
-
-    <!-- CONTACT -->
-    <section id="contact ">
-        <div class="container ">
-            <div class="row ">
-                <div class="col-12 " data-aos="fade-up ">
-                    <div class="intro text-center ">
-                        <div class="hr-line "></div>
-                        <h1 class="display-4 ">LET'S GET IN<br> TOUCH TODAY</h1>
-                        <p class="mx-auto ">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                    </div>
-                </div>
+            <div class="card">
+              <h4>Graphic Design</h4>
+              <p class="muted">Posters, flyers, social media graphics, banners, brochures.</p>
             </div>
-            <div class="row ">
-                <div class="col-lg-8 mx-auto " data-aos="fade-up ">
-                    <form action=" " class="row gy-3 ">
-                        <div class="col-lg-6 ">
-                            <input type="text " class="form-control " placeholder="Name ">
-                        </div>
-                        <div class="col-lg-6 ">
-                            <input type="email " class="form-control " placeholder="Email ">
-                        </div>
-                        <div class="col-lg-12 ">
-                            <input type="text " class="form-control " placeholder="Subject ">
-                        </div>
-                        <div class="col-lg-12 ">
-                            <textarea class="form-control " placeholder="message " rows="5 "></textarea>
-                        </div>
-                        <div class="col-12 ">
-                            <button class="btn btn-dark ">Send Message</button>
-                        </div>
-                    </form>
-                </div>
+            <div class="card">
+              <h4>Web Development</h4>
+              <p class="muted">WordPress websites, e-commerce, landing pages, maintenance & SEO.</p>
             </div>
-        </div>
-    </section>
+            <div class="card">
+              <h4>Training & Consultancy</h4>
+              <p class="muted">Workshops on Canva, WordPress, brand strategy for SMEs.</p>
+            </div>
+            <div class="card">
+              <h4>UI/UX</h4>
+              <p class="muted">Wireframes, prototypes and user testing support.</p>
+            </div>
+            <div class="card">
+              <h4>Digital Strategy</h4>
+              <p class="muted">Content plans, social campaigns and conversion-focused design.</p>
+            </div>
+          </div>
+        </section>
 
-    <!-- INSTA POSTS -->
+        <section id="portfolio">
+          <div class="section-title">
+            <h3>Portfolio</h3>
+            <div>
+              <div class="filters" id="filters">
+                <div class="filter active" data-filter="all">All</div>
+                <div class="filter" data-filter="websites">Websites</div>
+                <div class="filter" data-filter="posters">Posters</div>
+                <div class="filter" data-filter="logos">Logos</div>
+                <div class="filter" data-filter="banners">Banners</div>
+                <div class="filter" data-filter="branding">Branding</div>
+              </div>
+            </div>
+          </div>
 
-    <section class="py-0 w-100 row" id="insta-posts">
-        <div class="col">
-            <img src="assets/img/insta_post.jpg" alt=" ">
-        </div>
-        <div class="col">
-            <img src="assets/img/insta_post2.jpg " alt=" ">
-        </div>
-        <div class="col">
-            <img src="assets/img/insta_post3.jpg " alt=" ">
-        </div>
-        <div class="col">
-            <img src="assets/img/insta_post4.jpg " alt=" ">
-        </div> I
-        <a href="#" class="insta-follow">
-            <i class="ri-instagram-fill"> </i>
-        </a>
-    </section>
+          <div class="portfolio-grid" id="portfolioGrid">
+            <!-- Websites -->
+            <div class="project" data-category="websites" data-title="Shama Consult Africa" data-desc="WordPress site: responsive, SEO basics, ongoing maintenance" data-link="https://shamaconsult.co.ke/">
+              <img src="Assets/Websites/shamaconsult.png" alt="Shama Consult homepage screenshot">
+              <div class="meta"><h4>Shama Consult Africa</h4><p class="muted">WordPress website — live</p></div>
+            </div>
 
-    <!-- FOOTER -->
+            <div class="project" data-category="websites" data-title="Africa Centre for Project Knowledge & Techniques" data-desc="WordPress site with blog and resources, ongoing maintenance" data-link="https://www.centreforprojectknowledge.com/">
+              <img src="Assets/Websites/africa_centre.png" alt="Africa Centre homepage screenshot">
+              <div class="meta"><h4>Africa Centre for Project Knowledge & Techniques</h4><p class="muted">WordPress website — live</p></div>
+            </div>
 
-    <section>
+            <!-- Posters (sample files) -->
+            <div class="project" data-category="posters" data-title="ACPKT Poster 1" data-desc="A4 poster design adapted for web" data-file="Assets/Posters/acpkt1.png">
+              <img src="Assets/Posters/acpkt1.png" alt="acpkt1 poster">
+              <div class="meta"><h4>ACPKT Poster 1</h4><p class="muted">Poster / A4</p></div>
+            </div>
+            <div class="project" data-category="posters" data-title="ACPKT Poster 2" data-desc="A4 poster design adapted for web" data-file="Assets/Posters/acpkt2.png">
+              <img src="Assets/Posters/acpkt2.png" alt="acpkt2 poster">
+              <div class="meta"><h4>ACPKT Poster 2</h4><p class="muted">Poster / A4</p></div>
+            </div>
+            <div class="project" data-category="posters" data-title="Cartrace poster 1" data-desc="Event poster" data-file="Assets/Posters/Cartrace1.png">
+              <img src="Assets/Posters/Cartrace1.png" alt="Cartrace1 poster">
+              <div class="meta"><h4>Cartrace 1</h4><p class="muted">Poster</p></div>
+            </div>
+
+            <!-- More posters... -->
+            <div class="project" data-category="posters" data-title="DroneSpace" data-desc="Poster for DroneSpace" data-file="Assets/Posters/dronespace.png">
+              <img src="Assets/Posters/dronespace.png" alt="dronespace poster">
+              <div class="meta"><h4>DroneSpace</h4><p class="muted">Poster</p></div>
+            </div>
+
+            <!-- Logos -->
+            <div class="project" data-category="logos" data-title="Autopesa logo" data-desc="Brand identity & logo" data-file="Assets/Logos/Autopesa.png">
+              <img src="Assets/Logos/Autopesa.png" alt="Autopesa logo">
+              <div class="meta"><h4>Autopesa</h4><p class="muted">Logo</p></div>
+            </div>
+            <div class="project" data-category="logos" data-title="Dflow_Pesa logo" data-desc="Logo & icon" data-file="Assets/Logos/Dflow_Pesa.png">
+              <img src="Assets/Logos/Dflow_Pesa.png" alt="Dflow Pesa logo">
+              <div class="meta"><h4>Dflow_Pesa</h4><p class="muted">Logo</p></div>
+            </div>
+
+            <!-- Banners -->
+            <div class="project" data-category="banners" data-title="Rental Ease Banner" data-desc="Web banner" data-file="Assets/Banners/Rental_Ease.png">
+              <img src="Assets/Banners/Rental_Ease.png" alt="Rental Ease banner">
+              <div class="meta"><h4>Rental Ease</h4><p class="muted">Banner</p></div>
+            </div>
+
+            <!-- Branding -->
+            <div class="project" data-category="branding" data-title="ID Card back" data-desc="Branding sample: ID card" data-file="Assets/Branding/ID_Card_back.png">
+              <img src="Assets/Branding/ID_Card_back.png" alt="ID Card back">
+              <div class="meta"><h4>ID Card (back)</h4><p class="muted">Branding</p></div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Modal for project details -->
+        <div class="modal" id="modal">
+          <div class="modal-content">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+              <strong id="modalTitle">Project Title</strong>
+              <button class="close-btn" id="closeModal">Close ✕</button>
+            </div>
+            <div class="modal-body">
+              <div>
+                <img id="modalImage" src="" alt="Project image">
+              </div>
+              <div class="modal-info">
+                <p id="modalDesc" class="muted">Project description</p>
+                <div style="margin-top:12px;display:flex;gap:8px;flex-direction:column">
+                  <a id="modalLink" class="btn btn-primary" href="#" target="_blank">Open Website / View Source</a>
+                  <a id="modalDownload" class="btn btn-outline" href="#" download>Download Image</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section id="contact">
+          <div class="section-title"><h3>Contact</h3></div>
+          <div class="contact-card">
+            <div>
+              <h4>Work with me</h4>
+              <p class="muted">Interested in a website, logo, or graphic? Send a message and I’ll respond within 24–48 hours.</p>
+              <p style="margin-top:8px">WhatsApp: <a href="https://wa.me/254768832306" target="_blank">+254 768 832306</a></p>
+              <p>Email: <a href="mailto:business.techmsafi@gmail.com">business.techmsafi@gmail.com</a></p>
+              <p style="margin-top:8px">Portfolio: <a href="https://fredgraphics.vercel.app" target="_blank">fredgraphics.vercel.app</a></p>
+            </div>
+            <div>
+              <form class="form" onsubmit="return submitForm(event)">
+                <input type="text" id="name" placeholder="Your name" required />
+                <input type="email" id="email" placeholder="Your email" required />
+                <textarea id="message" placeholder="Brief message / project overview" required></textarea>
+                <div style="display:flex;gap:8px;margin-top:8px">
+                  <button class="btn btn-primary" type="submit">Send Message</button>
+                  <a class="btn btn-outline" href="mailto:business.techmsafi@gmail.com">Email Me</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
         <footer>
-            <div class="container footer-top ">
-            </div>
-            <div class="container footer-bottom ">
-                <div class="row justify-content-between ">
-                    <div class="col-auto ">
-                        <p class="mb-0 ">Copyright © All Rights Reserved FRED KIPTUI</p>
-                    </div>
-                </div>
-            </div>
+          <p>Fred Kiptui — Techmsafi • Smart Design, Smart Code</p>
+          <p class="muted">© <span id="year"></span> Techmsafi. All rights reserved.</p>
         </footer>
-    </section>
 
-    <!-- FOOTER -->
+      </main>
+    </div>
+  </div>
 
-    <script src="assets/js/bootstrap.bundle.min.js "></script>
-    <script src="assets/js/aos.min.js "></script>
-    <script src="assets/js/app.js "></script>
+  <script>
+    // ---------- Utilities ----------
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const mobileToggle = document.querySelector('.mobile-toggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileToggle.addEventListener('click', ()=> mobileMenu.classList.toggle('show'));
+
+    // Filters
+    const filters = Array.from(document.querySelectorAll('.filter'));
+    const projects = Array.from(document.querySelectorAll('.project'));
+
+    filters.forEach(f=>{
+      f.addEventListener('click', ()=>{
+        filters.forEach(x=>x.classList.remove('active'));
+        f.classList.add('active');
+        const filter = f.dataset.filter;
+        if(filter === 'all'){
+          projects.forEach(p=>p.style.display='block');
+        } else {
+          projects.forEach(p=> p.dataset.category === filter ? p.style.display='block' : p.style.display='none');
+        }
+        window.scrollTo({top: document.getElementById('portfolio').offsetTop - 40, behavior:'smooth'});
+      });
+    });
+
+    // Quick access helper
+    function filterCategory(cat){
+      const target = filters.find(x=>x.dataset.filter === (cat === 'graphics' ? 'posters' : cat));
+      if(target) target.click();
+    }
+
+    // Project modal
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalImage = document.getElementById('modalImage');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalLink = document.getElementById('modalLink');
+    const modalDownload = document.getElementById('modalDownload');
+    const closeModal = document.getElementById('closeModal');
+
+    projects.forEach(p=>{
+      p.addEventListener('click', ()=>{
+        const title = p.dataset.title || 'Project';
+        const desc = p.dataset.desc || '';
+        const link = p.dataset.link || p.dataset.file || '';
+        modalTitle.textContent = title;
+        modalDesc.textContent = desc;
+        modalImage.src = (p.querySelector('img') && p.querySelector('img').src) || link;
+        modalLink.href = p.dataset.link || '#';
+        modalDownload.href = p.dataset.file || p.querySelector('img').src;
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    closeModal.addEventListener('click', ()=>{
+      modal.classList.remove('show');
+      document.body.style.overflow = '';
+    });
+
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) { modal.classList.remove('show'); document.body.style.overflow = ''; } });
+
+    // Contact form — simple mailto fallback
+    function submitForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const subject = encodeURIComponent('Work enquiry from ' + name);
+      const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
+      window.location.href = `mailto:business.techmsafi@gmail.com?subject=${subject}&body=${body}`;
+      return false;
+    }
+
+    // Smooth scrolling for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const target = this.getAttribute('href');
+        if(target.length > 1){
+          e.preventDefault();
+          document.querySelector(target).scrollIntoView({behavior:'smooth'});
+          if(window.innerWidth < 640){ mobileMenu.classList.remove('show'); }
+        }
+      });
+    });
+
+    // Accessibility: close modal with ESC
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape'){ modal.classList.remove('show'); document.body.style.overflow = ''; } });
+
+  </script>
 </body>
-
 </html>

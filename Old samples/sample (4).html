@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fred Kiptui — Techmsafi | Smart Design, Smart Code</title>
+  <meta name="description" content="Techmsafi — Clean, smart digital solutions. Portfolio of Fred Kiptui: web design, branding, and graphic design." />
+  <link rel="icon" href="Assets/logo.png" />
+  <link rel="apple-touch-icon" href="Assets/logo.png" />
+  <meta name="theme-color" content="#0A66C2" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --tech-blue: #0A66C2;
+      --clean-green: #00C853;
+      --bg-dark: #0b1220;
+      --card: rgba(255,255,255,0.03);
+      --glass: rgba(255,255,255,0.04);
+      --muted: rgba(255,255,255,0.6);
+      --accent-gradient: linear-gradient(135deg,var(--tech-blue),#062a6b 60%);
+      --max-width: 1200px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(10,102,194,0.08), transparent),
+                  linear-gradient(180deg, var(--bg-dark) 0%, #071020 100%);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    .container{max-width:var(--max-width);margin:0 auto;padding:28px}
+
+    /* NAV */
+    header{position:sticky;top:12px;z-index:80}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;backdrop-filter: blur(6px);box-shadow:0 6px 20px rgba(2,6,23,0.6)}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{width:48px;height:48px;border-radius:8px;object-fit:cover}
+    .brand h1{margin:0;font-size:18px;letter-spacing:0.2px}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+
+    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0;align-items:center}
+    nav a{color:inherit;text-decoration:none;font-weight:600;opacity:0.95}
+    .cta{padding:8px 14px;border-radius:10px;background:var(--accent-gradient);box-shadow:0 6px 18px rgba(10,102,194,0.16);border:1px solid rgba(255,255,255,0.04)}
+
+    /* Mobile nav */
+    .mobile-toggle{display:none;background:transparent;border:0;color:var(--muted);font-size:18px}
+    @media(max-width:880px){
+      nav ul{display:none}
+      .mobile-toggle{display:block}
+    }
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:48px 0}
+    .hero-left h2{font-size:34px;margin:0 0 10px}
+    .hero-left p.lead{color:var(--muted);margin:0 0 18px}
+    .skills{display:flex;gap:10px;flex-wrap:wrap}
+    .skill{background:var(--card);padding:8px 10px;border-radius:999px;font-weight:600;font-size:13px}
+    .hero-right{display:flex;justify-content:center}
+    .profile{width:320px;height:320px;border-radius:20px;overflow:hidden;position:relative;background:linear-gradient(180deg, rgba(0,200,83,0.06), rgba(10,102,194,0.06));display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.04)}
+    .profile img{width:100%;height:100%;object-fit:cover}
+    .badges{position:absolute;left:12px;bottom:12px;display:flex;gap:8px}
+    .badge{background:var(--glass);padding:6px 8px;border-radius:8px;font-weight:700;font-size:12px}
+
+    @media(max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .hero-right{order:-1;margin-bottom:6px}
+      .profile{width:220px;height:220px}
+    }
+
+    /* SECTIONS */
+    section{padding:36px 0}
+    h3{margin:0 0 16px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.02));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+
+    /* SERVICES */
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .service{padding:16px;border-radius:12px;background:transparent}
+    .service h4{margin:0 0 10px}
+    .service p{margin:0;color:var(--muted)}
+    @media(max-width:980px){.services{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){.services{grid-template-columns:1fr}}
+
+    /* PORTFOLIO */
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+    .filter{padding:8px 12px;border-radius:999px;background:var(--glass);cursor:pointer;font-weight:700}
+    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .project{position:relative;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+    .project img{width:100%;height:220px;object-fit:cover;display:block;transition:transform .35s ease}
+    .project:hover img{transform:scale(1.04)}
+    .project .meta{position:absolute;left:12px;bottom:12px;background:linear-gradient(90deg, rgba(0,0,0,0.6), rgba(0,0,0,0.2));padding:10px 12px;border-radius:8px}
+    .meta h5{margin:0;font-size:14px}
+    .meta p{margin:4px 0 0;font-size:12px;color:#e6eefc}
+
+    @media(max-width:980px){.portfolio-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){.portfolio-grid{grid-template-columns:1fr}}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    .contact-form input,.contact-form textarea{width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:inherit}
+    .contact-form button{padding:12px 16px;border-radius:10px;border:0;background:var(--tech-blue);color:#fff;font-weight:700}
+    @media(max-width:980px){.contact-grid{grid-template-columns:1fr}}
+
+    footer{padding:26px 0;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .gap-12{height:12px}
+
+    /* micro interactions */
+    .floating{position:fixed;right:18px;bottom:18px;background:var(--clean-green);color:#05221a;padding:12px;border-radius:999px;box-shadow:0 8px 24px rgba(0,200,83,0.12);font-weight:800;z-index:90}
+
+    /* subtle entrance animations */
+    .reveal{opacity:0;transform:translateY(8px);transition:all .5s cubic-bezier(.2,.9,.2,1)}
+    .reveal.show{opacity:1;transform:none}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="nav">
+        <div class="brand">
+          <img src="Assets/logo.png" alt="Techmsafi logo"/>
+          <div>
+            <h1>Techmsafi</h1>
+            <p>Smart Design, Smart Code</p>
+          </div>
+        </div>
+
+        <nav>
+          <button class="mobile-toggle" id="navToggle">☰</button>
+          <ul id="navList">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a class="cta" href="#contact">Hire Me</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-left">
+          <h2 class="reveal">Hi, I’m <span style="color:var(--tech-blue)">Fred Kiptui</span> — Founder of <span style="color:var(--clean-green)">Techmsafi</span></h2>
+          <p class="lead reveal">I design clean, modern brand identities and build fast, responsive websites that convert. I blend design and code to help small businesses grow online.</p>
+
+          <div class="skills reveal">
+            <span class="skill">Branding</span>
+            <span class="skill">WordPress</span>
+            <span class="skill">UI/UX</span>
+            <span class="skill">Canva Training</span>
+            <span class="skill">Graphic Design</span>
+            <span class="skill">SEO Basics</span>
+          </div>
+
+          <div style="margin-top:18px" class="reveal">
+            <a href="#portfolio" class="cta" style="margin-right:12px">View Work</a>
+            <a href="mailto:business.techmsafi@gmail.com" class="cta" style="background:transparent;border:1px solid rgba(255,255,255,0.06)">Get in touch</a>
+          </div>
+
+          <div style="margin-top:26px" class="card reveal">
+            <strong>Quick Stats</strong>
+            <div style="display:flex;gap:12px;margin-top:8px">
+              <div style="flex:1">
+                <div style="font-size:20px;font-weight:800">2+</div>
+                <div class="muted">Live sites</div>
+              </div>
+              <div style="flex:1">
+                <div style="font-size:20px;font-weight:800">10+</div>
+                <div class="muted">Design assets</div>
+              </div>
+              <div style="flex:1">
+                <div style="font-size:20px;font-weight:800">5</div>
+                <div class="muted">Clients (first month)</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="hero-right">
+          <div class="profile reveal">
+            <img src="Assets/Fred.PNG" alt="Fred Kiptui"/>
+            <div class="badges">
+              <span class="badge">Founder</span>
+              <span class="badge">Web & Brand</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="card">
+          <h3>About Techmsafi</h3>
+          <p class="muted">Techmsafi (Tech + Msafi) is a Nairobi-based creative studio focused on clean design and smart code. We help small businesses and consultancies build strong brand presence and fast websites.</p>
+
+          <div style="margin-top:14px;display:flex;gap:12px;flex-wrap:wrap">
+            <div class="card" style="padding:12px">
+              <strong>Vision</strong>
+              <div class="muted">To become Africa’s leading creative tech partner—empowering businesses with clean, smart digital solutions.</div>
+            </div>
+            <div class="card" style="padding:12px">
+              <strong>Mission</strong>
+              <div class="muted">We merge creativity with technology to design future-ready brands and websites that deliver results.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services">
+        <h3>Services</h3>
+        <div class="services">
+          <div class="service card reveal">
+            <h4>Branding</h4>
+            <p class="muted">Logo design, brand identity, style guides, stationery and brand assets.</p>
+          </div>
+          <div class="service card reveal">
+            <h4>Graphic Design</h4>
+            <p class="muted">Posters, social graphics, banners, infographics, and marketing materials.</p>
+          </div>
+          <div class="service card reveal">
+            <h4>Web Development</h4>
+            <p class="muted">WordPress sites, e-commerce (WooCommerce), landing pages, and maintenance.</p>
+          </div>
+          <div class="service card reveal">
+            <h4>Consultancy & Training</h4>
+            <p class="muted">Workshops on Canva, WordPress for SMEs, digital strategy and UI/UX audits.</p>
+          </div>
+          <div class="service card reveal">
+            <h4>Short Courses</h4>
+            <p class="muted">Design basics, WordPress for beginners, and branding fundamentals for entrepreneurs.</p>
+          </div>
+          <div class="service card reveal">
+            <h4>SEO & Performance</h4>
+            <p class="muted">Basic on-page SEO, analytics, and website speed improvements.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio">
+        <h3>Portfolio</h3>
+
+        <div class="filters">
+          <button class="filter" data-filter="all">All</button>
+          <button class="filter" data-filter="web">Websites</button>
+          <button class="filter" data-filter="posters">Posters</button>
+          <button class="filter" data-filter="logos">Logos</button>
+          <button class="filter" data-filter="branding">Branding</button>
+        </div>
+
+        <div class="portfolio-grid" id="portfolioGrid">
+          <!-- Websites -->
+          <a class="project" data-category="web" href="https://shamaconsult.co.ke" target="_blank" title="Shama Consult Africa">
+            <img src="Assets/Websites/shamaconsult.png" alt="Shama Consult Africa" />
+            <div class="meta"><h5>Shama Consult Africa</h5><p>Corporate website — ongoing maintenance</p></div>
+          </a>
+
+          <a class="project" data-category="web" href="https://www.centreforprojectknowledge.com" target="_blank" title="Africa Centre for Project Knowledge & Techniques">
+            <img src="Assets/Websites/africa_centre.png" alt="Africa Centre for Project Knowledge & Techniques" />
+            <div class="meta"><h5>Africa Centre for Project Knowledge</h5><p>Consultancy & training website</p></div>
+          </a>
+
+          <!-- Posters (examples) -->
+          <div class="project" data-category="posters">
+            <img src="Assets/Posters/acpkt1.png" alt="Poster 1" />
+            <div class="meta"><h5>ACPKT Poster 1</h5><p>Event poster design</p></div>
+          </div>
+
+          <div class="project" data-category="posters">
+            <img src="Assets/Posters/dronespace.png" alt="Dronescape Poster" />
+            <div class="meta"><h5>DroneSpace Campaign</h5><p>Marketing poster</p></div>
+          </div>
+
+          <div class="project" data-category="posters">
+            <img src="Assets/Posters/Cartrace1.png" alt="Cartrace" />
+            <div class="meta"><h5>Cartrace Ads</h5><p>Social media banners</p></div>
+          </div>
+
+          <!-- Logos -->
+          <div class="project" data-category="logos">
+            <img src="Assets/Logos/Autopesa.png" alt="Autopesa" />
+            <div class="meta"><h5>Autopesa</h5><p>Logo design</p></div>
+          </div>
+
+          <div class="project" data-category="logos">
+            <img src="Assets/Logos/Fast_Transfers.png" alt="Fast Transfers" />
+            <div class="meta"><h5>Fast Transfers</h5><p>Branding & logo</p></div>
+          </div>
+
+          <!-- Banners -->
+          <div class="project" data-category="branding">
+            <img src="Assets/Banners/Rental_Ease.png" alt="Rental Ease" />
+            <div class="meta"><h5>Rental Ease Banner</h5><p>Banner for ad campaign</p></div>
+          </div>
+
+          <!-- Branding -->
+          <div class="project" data-category="branding">
+            <img src="Assets/Branding/ID_Card_back.jpg" alt="ID Card" />
+            <div class="meta"><h5>ID Card Design</h5><p>Branding collateral</p></div>
+          </div>
+
+        </div>
+
+        <div style="margin-top:18px;text-align:center">
+          <a class="cta" href="#contact">Work with me</a>
+        </div>
+
+      </section>
+
+      <section id="contact">
+        <h3>Contact</h3>
+        <div class="contact-grid">
+          <div class="card contact-form">
+            <form id="contactForm" action="mailto:business.techmsafi@gmail.com" method="post" enctype="text/plain" onsubmit="handleContact(event)">
+              <label class="muted">Name</label>
+              <input type="text" id="name" required placeholder="Your name"/>
+              <label class="muted">Email</label>
+              <input type="email" id="email" required placeholder="you@example.com"/>
+              <label class="muted">Message</label>
+              <textarea id="message" rows="5" placeholder="How can I help?" required></textarea>
+              <div style="margin-top:12px"><button type="submit">Send message</button></div>
+            </form>
+
+            <div style="margin-top:12px" class="muted">Or reach me directly: <br/> <strong>WhatsApp:</strong> +254768832306 <br/><strong>Email:</strong> business.techmsafi@gmail.com</div>
+          </div>
+
+          <div class="card">
+            <h4>Availability</h4>
+            <p class="muted">Open to freelance projects, short contracts, and training workshops. Nairobi-based (can travel to Upper Hill, Westlands, Kilimani).</p>
+
+            <div style="margin-top:12px">
+              <strong>Packages</strong>
+              <ul class="muted">
+                <li>Basic Site — Kshs. 10,000 (3 pages)</li>
+                <li>Standard Site — Kshs. 20,000 (5–7 pages + blog)</li>
+                <li>Premium Site — Kshs. 50,000 (E-commerce + integrations)</li>
+              </ul>
+            </div>
+
+            <div style="margin-top:12px">
+              <strong>Download CV</strong>
+              <div class="muted">(Place your resume at <code>Assets/Fred_Resume.pdf</code>)</div>
+              <a class="cta" href="Assets/Fred_Resume.pdf" download>Download</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div>© <strong>Fred Kiptui — Techmsafi</strong> • <span class="muted">Smart Design, Smart Code</span></div>
+      <div class="muted">Built with ♥ — Available for hire</div>
+    </footer>
+
+  </div>
+
+  <a class="floating" href="https://wa.me/254768832306" target="_blank">WhatsApp</a>
+
+  <script>
+    // Mobile navigation toggle
+    const navToggle = document.getElementById('navToggle');
+    const navList = document.getElementById('navList');
+    navToggle && navToggle.addEventListener('click', ()=>{
+      navList.style.display = navList.style.display === 'flex' ? 'none' : 'flex';
+      navList.style.flexDirection = 'column';
+      navList.style.gap = '12px';
+      navList.style.background = 'transparent';
+      navList.style.position = 'absolute';
+      navList.style.right = '18px';
+      navList.style.top = '70px';
+      navList.style.padding = '12px';
+      navList.style.borderRadius = '12px';
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    function revealOnScroll(){
+      for(const r of reveals){
+        const rect = r.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 40){ r.classList.add('show') }
+      }
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('load', revealOnScroll);
+
+    // Portfolio filters
+    const filters = document.querySelectorAll('.filter');
+    const projects = document.querySelectorAll('.project');
+    filters.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const f = btn.getAttribute('data-filter');
+        filters.forEach(b=>b.style.opacity = '0.6');
+        btn.style.opacity = '1';
+        projects.forEach(p=>{
+          if(f === 'all'){ p.style.display = 'block' }
+          else{ p.style.display = p.dataset.category === f ? 'block' : 'none' }
+        })
+      })
+    })
+
+    // Default filter: all
+    document.querySelector('[data-filter="all"]').click();
+
+    // Simple contact handler (prevents form from opening mail client in some browsers)
+    function handleContact(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if(!name || !email || !message) return alert('Please fill all fields');
+      const subject = encodeURIComponent('Website inquiry from ' + name);
+      const body = encodeURIComponent('Name: '+name+'\nEmail: '+email+'\n\n'+message);
+      window.location.href = `mailto:business.techmsafi@gmail.com?subject=${subject}&body=${body}`;
+    }
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+      })
+    })
+
+  </script>
+</body>
+</html>

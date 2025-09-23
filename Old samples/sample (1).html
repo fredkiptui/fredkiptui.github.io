@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Techmsafi — Smart Design, Smart Code</title>
+  <meta name="description" content="Techmsafi — Clean, smart digital solutions: branding, graphic design, and web development." />
+  <meta name="author" content="Fred Kiptui / Techmsafi" />
+
+  <!-- Brand colors -->
+  <style>
+    :root{
+      --tech-blue: #0A66C2;
+      --clean-green: #00C853;
+      --bg: #ffffff;
+      --muted: #6b7280;
+      --radius: 12px;
+      --max-width: 1100px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:#0f172a}
+    a{color:inherit;text-decoration:none}
+
+    /* Layout */
+    .container{max-width:var(--max-width);margin:0 auto;padding:24px}
+    header{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{width:56px;height:56px;object-fit:cover;border-radius:8px}
+    .brand h1{margin:0;font-size:20px}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+
+    /* Nav */
+    nav ul{display:flex;gap:16px;list-style:none;margin:0;padding:0}
+    nav a{padding:8px 10px;border-radius:8px}
+    nav a.cta{background:var(--tech-blue);color:white}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:40px 0}
+    .hero h2{font-size:34px;margin:0 0 8px}
+    .hero p{margin:0 0 16px;color:var(--muted)}
+    .hero .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{padding:10px 16px;border-radius:10px;border:1px solid transparent;cursor:pointer}
+    .btn-primary{background:var(--tech-blue);color:#fff}
+    .btn-outline{background:transparent;border-color:var(--tech-blue);color:var(--tech-blue)}
+
+    .profile-card{background:linear-gradient(180deg,rgba(10,102,194,0.06),rgba(0,200,83,0.03));padding:18px;border-radius:16px;text-align:center}
+    .profile-card img{width:160px;height:160px;object-fit:cover;border-radius:12px;border:4px solid #fff;box-shadow:0 6px 18px rgba(10,102,194,0.08)}
+    .role{margin-top:12px;font-weight:600}
+    .socials{display:flex;gap:8px;justify-content:center;margin-top:10px}
+
+    /* Services */
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+    .card{background:#fff;padding:18px;border-radius:12px;box-shadow:0 6px 20px rgba(15,23,42,0.04);border:1px solid rgba(15,23,42,0.03)}
+    .card h3{margin:0 0 8px}
+    .muted{color:var(--muted);font-size:14px}
+
+    /* Portfolio */
+    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
+    .project{border-radius:12px;overflow:hidden;position:relative}
+    .project img{width:100%;height:180px;object-fit:cover;display:block}
+    .project .meta{padding:12px}
+    .project .meta a{display:inline-block;margin-top:8px}
+
+    /* Filters */
+    .filters{display:flex;gap:8px;margin:10px 0}
+    .filters button{padding:8px 10px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);background:#fff}
+    .filters button.active{border-color:var(--tech-blue);background:linear-gradient(90deg,var(--tech-blue),#0075d9);color:#fff}
+
+    /* Contact */
+    .contact{display:grid;grid-template-columns:1fr 360px;gap:18px;margin-top:28px;align-items:start}
+    form{display:flex;flex-direction:column;gap:10px}
+    input,textarea{padding:12px;border-radius:8px;border:1px solid rgba(15,23,42,0.08)}
+    .contact .info{background:#f8fafc;padding:18px;border-radius:12px}
+
+    footer{padding:18px 0;color:var(--muted);text-align:center}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .projects{grid-template-columns:repeat(2,1fr)}
+      .services{grid-template-columns:repeat(2,1fr)}
+      .contact{grid-template-columns:1fr}
+      nav ul{display:none}
+      .mobile-nav{display:flex}
+    }
+
+    @media (max-width:560px){
+      .projects{grid-template-columns:1fr}
+      .brand img{width:48px;height:48px}
+      .hero h2{font-size:26px}
+      .profile-card img{width:140px;height:140px}
+    }
+
+    /* Tiny interactions */
+    .fade-up{opacity:0;transform:translateY(14px);transition:all .6s ease}
+    .inview{opacity:1;transform:none}
+
+    /* Mobile menu button */
+    .mobile-toggle{display:none}
+    @media (max-width:980px){.mobile-toggle{display:block}} 
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="brand">
+        <img src="assets/logo.png" alt="Techmsafi logo">
+        <div>
+          <h1>Techmsafi</h1>
+          <p>Smart Design, Smart Code</p>
+        </div>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a class="cta" href="#contact">Hire Me</a></li>
+        </ul>
+      </nav>
+
+      <div class="mobile-toggle">
+        <button id="menuBtn" aria-label="Toggle menu" class="btn">Menu</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <div>
+          <h2 class="fade-up">Hi — I’m Fred, Founder of Techmsafi</h2>
+          <p class="fade-up">I design clean, smart brand identities and build fast, reliable websites that help businesses grow online.</p>
+          <div class="actions fade-up">
+            <a class="btn btn-primary" href="#contact">Get a Quote</a>
+            <a class="btn btn-outline" href="https://fredgraphics.vercel.app" target="_blank">View Portfolio</a>
+          </div>
+
+          <div style="margin-top:18px">
+            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+              <div style="display:flex;gap:8px;align-items:center"><strong>Role:</strong><span class="muted">Founder & Creative Lead</span></div>
+              <div style="display:flex;gap:8px;align-items:center"><strong>Location:</strong><span class="muted">Nairobi, Kenya</span></div>
+            </div>
+          </div>
+
+          <div style="margin-top:18px" class="fade-up">
+            <strong>Featured Projects</strong>
+            <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+              <a class="card" href="https://shamaconsult.co.ke" target="_blank" style="display:flex;align-items:center;gap:10px">
+                <img src="assets/shamaconsult-homepage.png" alt="Shama" style="width:72px;height:48px;object-fit:cover;border-radius:6px">
+                <div>
+                  <div style="font-weight:600">Shama Consult Africa</div>
+                  <div class="muted">WordPress site — Maintenance & updates</div>
+                </div>
+              </a>
+
+              <a class="card" href="https://centreforprojectknowledge.com" target="_blank" style="display:flex;align-items:center;gap:10px">
+                <img src="assets/africa-centre-homepage.png" alt="Africa Centre" style="width:72px;height:48px;object-fit:cover;border-radius:6px">
+                <div>
+                  <div style="font-weight:600">Africa Centre for Project Knowledge</div>
+                  <div class="muted">WordPress site — Redesign & SEO basics</div>
+                </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <aside>
+          <div class="profile-card">
+            <img src="assets/Fred.PNG" alt="Fred Kiptui">
+            <div class="role">Fred Kiptui</div>
+            <div class="muted">Founder & Creative Lead — Techmsafi</div>
+            <div class="socials">
+              <a href="https://x.com/techmsafi" target="_blank">X</a>
+              <a href="https://tiktok.com/techmsafi" target="_blank">TikTok</a>
+              <a href="https://youtube.com/c/techmsafi" target="_blank">YouTube</a>
+            </div>
+            <div style="margin-top:12px">
+              <a class="btn btn-primary" href="tel:+254768832306">Call / WhatsApp</a>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="services">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h2>Services</h2>
+          <div class="muted">Branding • Graphics • Web Development • Training</div>
+        </div>
+
+        <div class="services">
+          <div class="card fade-up">
+            <h3>Branding</h3>
+            <p class="muted">Logo design, brand guidelines, stationery, and visual identity systems.</p>
+          </div>
+
+          <div class="card fade-up">
+            <h3>Graphic Design</h3>
+            <p class="muted">Social posts, posters, banners, brochures, infographics.</p>
+          </div>
+
+          <div class="card fade-up">
+            <h3>Web Development</h3>
+            <p class="muted">WordPress sites, e-commerce, landing pages, maintenance, basic SEO.</p>
+          </div>
+
+          <div class="card fade-up">
+            <h3>Training & Consultancy</h3>
+            <p class="muted">Workshops on Canva, WordPress, & branding for SMEs.</p>
+          </div>
+
+          <div class="card fade-up">
+            <h3>UI / UX</h3>
+            <p class="muted">Wireframes, prototypes, and user testing guidance for web projects.</p>
+          </div>
+
+          <div class="card fade-up">
+            <h3>Extras</h3>
+            <p class="muted">Presentations, email templates, social media management, content writing.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px">
+          <h2>Portfolio</h2>
+          <div class="filters" aria-label="Filter projects">
+            <button class="active" data-filter="all">All</button>
+            <button data-filter="web">Websites</button>
+            <button data-filter="graphics">Graphics</button>
+          </div>
+        </div>
+
+        <div class="projects" id="projectsGrid">
+          <!-- Website Projects -->
+          <div class="project card" data-type="web">
+            <img src="assets/shamaconsult-homepage.png" alt="Shama Consult">
+            <div class="meta">
+              <strong>Shama Consult Africa</strong>
+              <div class="muted">WordPress site — Ongoing maintenance</div>
+              <a href="https://shamaconsult.co.ke" target="_blank">Visit site →</a>
+            </div>
+          </div>
+
+          <div class="project card" data-type="web">
+            <img src="assets/africa-centre-homepage.png" alt="Africa Centre">
+            <div class="meta">
+              <strong>Africa Centre for Project Knowledge</strong>
+              <div class="muted">WordPress redesign & SEO basics</div>
+              <a href="https://centreforprojectknowledge.com" target="_blank">Visit site →</a>
+            </div>
+          </div>
+
+          <!-- Graphic Projects (thumbnails) -->
+          <div class="project card" data-type="graphics">
+            <img src="assets/logo1.png" alt="Logo sample">
+            <div class="meta"><strong>Logo collection</strong><div class="muted">5 logos</div><a href="assets/logo1.png" target="_blank">Open →</a></div>
+          </div>
+
+          <div class="project card" data-type="graphics">
+            <img src="assets/poster1.png" alt="Poster sample">
+            <div class="meta"><strong>Poster samples</strong><div class="muted">5 posters</div><a href="assets/poster1.png" target="_blank">Open →</a></div>
+          </div>
+
+          <div class="project card" data-type="graphics">
+            <img src="assets/banner.png" alt="Banner">
+            <div class="meta"><strong>Banner</strong><div class="muted">1 banner</div><a href="assets/banner.png" target="_blank">Open →</a></div>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="contact">
+        <div style="margin-top:20px;display:flex;justify-content:space-between;align-items:center">
+          <h2>Contact</h2>
+          <div class="muted">Available for freelance & full-time roles</div>
+        </div>
+
+        <div class="contact">
+          <form onsubmit="return handleSubmit(event)">
+            <input id="name" placeholder="Your name" required />
+            <input id="email" type="email" placeholder="Your email" required />
+            <input id="phone" placeholder="Phone / WhatsApp" />
+            <textarea id="message" rows="5" placeholder="Write a short message..." required></textarea>
+            <div style="display:flex;gap:10px">
+              <button class="btn btn-primary" type="submit">Send Message</button>
+              <a class="btn btn-outline" href="mailto:business.techmsafi@gmail.com">Email</a>
+              <a class="btn" href="https://wa.me/254768832306">WhatsApp</a>
+            </div>
+          </form>
+
+          <aside class="info contact-card">
+            <div class="card contact-card" style="padding:14px">
+              <div style="font-weight:700">Contact</div>
+              <div class="muted">Fred Kiptui — Founder & Creative Lead</div>
+              <div style="margin-top:8px">Phone: <a href="tel:+254768832306">+254 768 832 306</a></div>
+              <div>Email: <a href="mailto:business.techmsafi@gmail.com">business.techmsafi@gmail.com</a></div>
+              <div style="margin-top:12px"><strong>Top services</strong>
+                <ul style="padding-left:18px;margin:6px 0 0;color:var(--muted)">
+                  <li>Branding & Logo Design</li>
+                  <li>WordPress Sites & E-commerce</li>
+                  <li>Posters, Banners, Social Graphics</li>
+                </ul>
+              </div>
+              <div style="margin-top:12px"><a href="https://fredgraphics.vercel.app" target="_blank">View full portfolio</a></div>
+              <div style="margin-top:12px"><a class="btn btn-primary" href="assets/resume.pdf" download>Download CV</a></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div>© <span id="year"></span> Techmsafi — Smart Design, Smart Code • Nairobi, Kenya</div>
+    </footer>
+  </div>
+
+  <script>
+    // Small utilities: menu toggle for mobile
+    const menuBtn = document.getElementById('menuBtn');
+    menuBtn && menuBtn.addEventListener('click', ()=>{
+      alert('Mobile menu not implemented in this single-file template. Use anchor links or expand as needed.');
+    });
+
+    // Intersection observer to reveal elements
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('inview') })
+    },{threshold:0.12});
+    document.querySelectorAll('.fade-up').forEach(n=>io.observe(n));
+
+    // Filters
+    const filters = document.querySelectorAll('.filters button');
+    const projects = document.querySelectorAll('#projectsGrid .project');
+    filters.forEach(btn=>btn.addEventListener('click', ()=>{
+      filters.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      projects.forEach(p=>{
+        if(f==='all') p.style.display='block';
+        else p.style.display = p.dataset.type===f ? 'block' : 'none';
+      });
+    }));
+
+    // Simple form handling — opens mailto as default
+    function handleSubmit(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const subject = encodeURIComponent('Contact from portfolio site — ' + name);
+      const body = encodeURIComponent(`Name: ${name}%0AEmail: ${email}%0APhone: ${phone}%0A%0A${message}`);
+      location.href = `mailto:business.techmsafi@gmail.com?subject=${subject}&body=${body}`;
+      return false;
+    }
+
+    // Small helper
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

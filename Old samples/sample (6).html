@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fred Kiptui — Techmsafi | Smart Design, Smart Code</title>
+  <link rel="icon" href="Assets/logo.png" />
+  <meta name="description" content="Techmsafi — Clean, smart digital solutions: branding, graphic design, and web development." />
+  <style>
+    :root{
+      --tech-blue:#0A66C2;
+      --clean-green:#00C853;
+      --bg:#0b1220;
+      --card:#0f1a2a;
+      --muted:#9aa6bb;
+      --glass: rgba(255,255,255,0.03);
+      --accent-grad: linear-gradient(135deg,var(--tech-blue),#072a66 60%);
+      --max-width:1100px;
+      --ff-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:var(--ff-sans);background:linear-gradient(180deg,#071025 0%, #0b1220 40%);color:#e6eef8;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max-width);margin:0 auto;padding:24px}
+
+    /* NAV */
+    .nav{position:sticky;top:12px;z-index:60;border-radius:12px;background:linear-gradient(90deg, rgba(10,102,194,0.06), rgba(0,200,83,0.02));backdrop-filter:blur(6px);padding:12px}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{width:46px;height:46px;border-radius:8px;object-fit:cover}
+    .brand h1{font-size:18px;margin:0}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+    .nav-links{display:flex;align-items:center;gap:14px}
+    .nav-links a{padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:600}
+    .button{background:var(--tech-blue);padding:8px 14px;border-radius:10px;color:#fff;font-weight:700;border:none;cursor:pointer}
+    .hamb{display:none;background:transparent;border:0;color:var(--muted)}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding:48px 0}
+    .hero-left h2{margin:0;font-size:36px;line-height:1.02}
+    .hero-left p{color:var(--muted);margin-top:12px}
+    .ctas{display:flex;gap:12px;margin-top:18px}
+    .photo-card{background:var(--card);padding:18px;border-radius:12px;text-align:center}
+    .photo-card img{width:200px;height:200px;border-radius:14px;object-fit:cover;border:4px solid rgba(255,255,255,0.03)}
+    .photo-card h3{margin:12px 0 6px}
+    .photo-card p{margin:0;color:var(--muted)}
+
+    /* SECTIONS */
+    section{padding:36px 0}
+    h3.section-title{margin:0 0 18px;font-size:20px}
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--glass);padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .card h4{margin:6px 0 8px}
+    .muted{color:var(--muted);font-size:14px}
+
+    /* PORTFOLIO */
+    .portfolio-filters{display:flex;gap:8px;margin-bottom:12px}
+    .pill{padding:8px 12px;border-radius:999px;background:transparent;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+
+    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .portfolio-grid img{width:100%;height:180px;object-fit:cover;border-radius:10px;cursor:pointer}
+
+    /* Posters carousel */
+    .carousel{overflow:hidden;padding:8px;background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));border-radius:12px}
+    .carousel-track{display:flex;gap:12px;will-change:transform}
+    .carousel-item{min-width:260px;border-radius:10px;overflow:hidden}
+    .carousel-item img{width:100%;height:160px;object-fit:cover}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;background:rgba(3,7,12,0.7);display:flex;align-items:center;justify-content:center;padding:18px;z-index:80;opacity:0;pointer-events:none;transition:all .18s}
+    .modal.show{opacity:1;pointer-events:auto}
+    .modal-card{max-width:1000px;width:100%;background:#051226;border-radius:10px;padding:18px}
+    .modal-card img{width:100%;height:auto;border-radius:8px}
+    .modal-meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    .input, textarea{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#e6eef8}
+    .send{background:var(--clean-green);color:#04210a;border:none;padding:12px;border-radius:8px;font-weight:700;cursor:pointer}
+
+    footer{padding:24px 0;color:var(--muted)}
+
+    /* responsive */
+    @media (max-width:1000px){.hero{grid-template-columns:1fr 320px}.grid-3{grid-template-columns:repeat(2,1fr)}.portfolio-grid{grid-template-columns:repeat(2,1fr)}.contact-grid{grid-template-columns:1fr}}
+    @media (max-width:720px){.nav-inner{flex-direction:row}.nav-links{display:none}.hamb{display:block}.hero{grid-template-columns:1fr;gap:18px}.photo-card{order:-1}.grid-3{grid-template-columns:1fr}.portfolio-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <nav class="container nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <div class="brand">
+        <img src="Assets/logo.png" alt="Techmsafi logo" />
+        <div>
+          <h1>Techmsafi</h1>
+          <p>Smart Design, Smart Code</p>
+        </div>
+      </div>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#contact">Contact</a>
+        <button class="button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire Me</button>
+      </div>
+
+      <button class="hamb" aria-label="Toggle menu" onclick="toggleNav()">☰</button>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="hero" id="home">
+      <div class="hero-left">
+        <h2>Hi, I'm <strong>Fred Kiptui</strong> — Founder of Techmsafi</h2>
+        <p>I design clean, smart digital experiences: branding, posters, and responsive websites that convert visitors into customers.</p>
+        <div class="ctas">
+          <button class="button" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">View Portfolio</button>
+          <button class="button" style="background:transparent;border:2px solid rgba(255,255,255,0.06)" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Let's Talk</button>
+        </div>
+
+        <div style="margin-top:28px;display:flex;gap:12px">
+          <div class="card" style="display:flex;gap:12px;align-items:center">
+            <div style="width:48px;height:48px;background:var(--tech-blue);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700">W</div>
+            <div>
+              <div style="font-weight:700">2 websites</div>
+              <div class="muted">Built & maintained</div>
+            </div>
+          </div>
+
+          <div class="card" style="display:flex;gap:12px;align-items:center">
+            <div style="width:48px;height:48px;background:var(--clean-green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:700">5+</div>
+            <div>
+              <div style="font-weight:700">Clients</div>
+              <div class="muted">Local & returning</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="photo-card">
+        <img src="Assets/Fred.PNG" alt="Fred Kiptui" />
+        <h3>Fred Kiptui</h3>
+        <p class="muted">Founder & Creative Lead — Techmsafi</p>
+        <div style="margin-top:12px;display:flex;gap:8px;justify-content:center">
+          <a class="pill" href="https://shamaconsult.co.ke" target="_blank">Shama Consult</a>
+          <a class="pill" href="https://centreforprojectknowledge.com" target="_blank">Africa Centre</a>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about">
+      <h3 class="section-title">About</h3>
+      <div class="card" style="display:flex;gap:16px;align-items:flex-start">
+        <div style="flex:1">
+          <p>Techmsafi (Tech + Msafi) stands for clean, smart design and code. I build brand identities and websites that are beautiful, accessible, and easy to manage. I specialize in WordPress, WooCommerce, and modern responsive HTML projects.</p>
+          <ul class="muted" style="margin-top:12px">
+            <li>Vision: To empower businesses with clean, smart digital solutions.</li>
+            <li>Mission: Merge creativity & technology to deliver future-ready designs.</li>
+          </ul>
+        </div>
+        <div style="width:320px">
+          <div class="card">
+            <h4>Contact</h4>
+            <p class="muted">Fred Kiptui — Founder & Creative Lead</p>
+            <p class="muted">Phone/WhatsApp: +254 768 832306</p>
+            <p class="muted">Email: business.techmsafi@gmail.com</p>
+            <p class="muted">Portfolio: fredgraphics.vercel.app</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <h3 class="section-title">Services</h3>
+      <div class="grid-3">
+        <div class="card">
+          <h4>Branding</h4>
+          <p class="muted">Logo design, brand identity, stationery, and brand guidelines to keep your visuals consistent.</p>
+        </div>
+        <div class="card">
+          <h4>Graphic Design</h4>
+          <p class="muted">Posters, banners, social media graphics, infographics, and ad creatives.</p>
+        </div>
+        <div class="card">
+          <h4>Web Development</h4>
+          <p class="muted">WordPress sites, WooCommerce, landing pages, website maintenance, and basic SEO.</p>
+        </div>
+        <div class="card">
+          <h4>Workshops & Training</h4>
+          <p class="muted">Canva, WordPress, and branding basics for SMEs — useful as add-on revenue.</p>
+        </div>
+        <div class="card">
+          <h4>UI/UX & Consultancy</h4>
+          <p class="muted">Design reviews, UX improvements, and digital strategy for small businesses.</p>
+        </div>
+        <div class="card">
+          <h4>Support & Maintenance</h4>
+          <p class="muted">Hosting setup, backups, security, and site speed improvements.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <h3 class="section-title">Portfolio</h3>
+      <div class="portfolio-filters">
+        <button class="pill" onclick="showFilter('web')" style="color: white;">Websites</button>
+        <button class="pill" onclick="showFilter('posters')"style="color: white;">Posters</button>
+        <button class="pill" onclick="showFilter('logos')"style="color: white;">Logos</button>
+        <button class="pill" onclick="showFilter('branding')"style="color: white;">Branding</button>
+      </div>
+
+      <!-- WEBSITES -->
+      <div id="filter-web" class="filter-block">
+        <div class="portfolio-grid">
+          <div class="card">
+            <img src="Assets/Websites/shamaconsult.png" alt="Shama Consult — screenshot" onclick="openModal('Shama Consult Africa','A business consultancy website','Assets/Websites/shamaconsult.png','https://shamaconsult.co.ke')" />
+            <h4 style="margin-top:8px">Shama Consult Africa</h4>
+            <p class="muted">WordPress business site. <a href="https://shamaconsult.co.ke" target="_blank">Visit live</a></p>
+          </div>
+
+          <div class="card">
+            <img src="Assets/Websites/africa_centre.png" alt="Africa Centre — screenshot" onclick="openModal('Africa Centre for Project Knowledge','Training & resources site','Assets/Websites/africa_centre.png','https://centreforprojectknowledge.com')" />
+            <h4 style="margin-top:8px">Africa Centre for Project Knowledge & Techniques</h4>
+            <p class="muted">WordPress site + ongoing maintenance. <a href="https://centreforprojectknowledge.com" target="_blank">Visit live</a></p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- POSTERS CAROUSEL -->
+      <div id="filter-posters" class="filter-block" style="display:none;margin-top:12px">
+        <div class="carousel" id="posterCarousel">
+          <div class="carousel-track" id="carouselTrack">
+            <!-- posters from Assets/Posters -->
+            <div class="carousel-item card"><img src="Assets/Posters/acpkt1.png" alt="poster 1" onclick="openModal('Poster: acpkt1','Poster sample','Assets/Posters/acpkt1.png')"/></div>
+            <div class="carousel-item card"><img src="Assets/Posters/acpkt2.png" alt="poster 2" onclick="openModal('Poster: acpkt2','Poster sample','Assets/Posters/acpkt2.png')"/></div>
+            <div class="carousel-item card"><img src="Assets/Posters/Cartrace1.png" alt="Cartrace1" onclick="openModal('Cartrace1','Poster sample','Assets/Posters/Cartrace1.png')"/></div>
+            <div class="carousel-item card"><img src="Assets/Posters/Cartrace2.png" alt="Cartrace2" onclick="openModal('Cartrace2','Poster sample','Assets/Posters/Cartrace2.png')"/></div>
+            <div class="carousel-item card"><img src="Assets/Posters/Cartrace3.png" alt="Cartrace3" onclick="openModal('Cartrace3','Poster sample','Assets/Posters/Cartrace3.png')"/></div>
+            <div class="carousel-item card"><img src="Assets/Posters/dronespace.png" alt="dronespace" onclick="openModal('dronespace','Poster sample','Assets/Posters/dronespace.png')"/></div>
+            <div class="carousel-item card"><img src="Assets/Posters/Maden1.png" alt="Maden1" onclick="openModal('Maden1','Poster sample','Assets/Posters/Maden1.png')"/></div>
+            <div class="carousel-item card"><img src="Assets/Posters/Maden2.png" alt="Maden2" onclick="openModal('Maden2','Poster sample','Assets/Posters/Maden2.png')"/></div>
+            <div class="carousel-item card"><img src="Assets/Posters/Maden3.png" alt="Maden3" onclick="openModal('Maden3','Poster sample','Assets/Posters/Maden3.png')"/></div>
+            <div class="carousel-item card"><img src="Assets/Posters/techhost1.png" alt="techhost1" onclick="openModal('techhost1','Poster sample','Assets/Posters/techhost1.png')"/></div>
+            <div class="carousel-item card"><img src="Assets/Posters/techhost2.png" alt="techhost2" onclick="openModal('techhost2','Poster sample','Assets/Posters/techhost2.png')"/></div>
+            <div class="carousel-item card"><img src="Assets/Posters/techhost3.png" alt="techhost3" onclick="openModal('techhost3','Poster sample','Assets/Posters/techhost3.png')"/></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOGOS -->
+      <div id="filter-logos" class="filter-block" style="display:none;margin-top:12px">
+        <div class="portfolio-grid">
+          <div class="card"><img src="Assets/Logos/Autopesa.png" alt="Autopesa" onclick="openModal('Autopesa','Logo','Assets/Logos/Autopesa.png')"/></div>
+          <div class="card"><img src="Assets/Logos/Dflow_Pesa.png" alt="Dflow" onclick="openModal('Dflow Pesa','Logo','Assets/Logos/Dflow_Pesa.png')"/></div>
+          <div class="card"><img src="Assets/Logos/DMKash_Pesa.png" alt="DMKash" onclick="openModal('DMKash Pesa','Logo','Assets/Logos/DMKash_Pesa.png')"/></div>
+          <div class="card"><img src="Assets/Logos/Fast_Transfers.png" alt="Fast Transfers" onclick="openModal('Fast Transfers','Logo','Assets/Logos/Fast_Transfers.png')"/></div>
+          <div class="card"><img src="Assets/Logos/Pesawave_Solutions.png" alt="Pesawave" onclick="openModal('Pesawave Solutions','Logo','Assets/Logos/Pesawave_Solutions.png')"/></div>
+          <div class="card"><img src="Assets/Logos/Two_Frends.png" alt="Two Frends" onclick="openModal('Two Frends','Logo','Assets/Logos/Two_Frends.png')"/></div>
+        </div>
+      </div>
+
+      <!-- BRANDING -->
+      <div id="filter-branding" class="filter-block" style="display:none;margin-top:12px">
+        <div class="portfolio-grid">
+          <div class="card"><img src="Assets/Branding/ID_Card_back.jpg" alt="ID Card" onclick="openModal('ID Card Back','Branding sample','Assets/Branding/ID_Card_back.jpg')"/></div>
+          <div class="card"><img src="Assets/Branding/ID_Card_back.png" alt="ID Card PNG" onclick="openModal('ID Card Back PNG','Branding sample','Assets/Branding/ID_Card_back.png')"/></div>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="contact">
+      <h3 class="section-title">Contact</h3>
+      <div class="contact-grid">
+        <div>
+          <p>If you have a project or want to work together — send me a message. I respond quickly to WhatsApp and email.</p>
+          <div style="margin-top:12px">
+            <form id="contactForm" onsubmit="handleContact(event)">
+              <input class="input" id="name" placeholder="Your name" required />
+              <input class="input" id="email" placeholder="Your email" type="email" required style="margin-top:8px" />
+              <input class="input" id="subject" placeholder="Subject" style="margin-top:8px" />
+              <textarea class="input" id="message" rows="6" placeholder="Brief message" style="margin-top:8px" required></textarea>
+              <div style="margin-top:8px;display:flex;gap:8px">
+                <button class="send" type="submit">Send message</button>
+                <a class="pill" href="mailto:business.techmsafi@gmail.com">Email</a>
+                <a class="pill" href="https://wa.me/254768832306" target="_blank">WhatsApp</a>
+              </div>
+            </form>
+          </div>
+        </div>
+        <aside>
+          <div class="card">
+            <h4>Quick Contact</h4>
+            <p class="muted">Fred Kiptui</p>
+            <p class="muted">Phone/WhatsApp: +254 768 832306</p>
+            <p class="muted">Email: business.techmsafi@gmail.com</p>
+            <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+              <a class="pill" href="https://x.com/techmsafi" target="_blank">X</a>
+              <a class="pill" href="https://tiktok.com/@techmsafi" target="_blank">TikTok</a>
+              <a class="pill" href="https://youtube.com/c/techmsafi" target="_blank">YouTube</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+        <div>
+          <strong>Fred Kiptui — Techmsafi</strong>
+          <div class="muted">Smart Design, Smart Code</div>
+        </div>
+        <div class="muted">&copy; <span id="year"></span> Techmsafi — All rights reserved</div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" role="dialog" aria-hidden="true">
+    <div class="modal-card">
+      <img id="modalImg" src="" alt="preview" />
+      <div class="modal-meta">
+        <div>
+          <strong id="modalTitle">Title</strong>
+          <div class="muted" id="modalDesc">Description</div>
+        </div>
+        <div>
+          <a id="modalLink" class="pill" href="#" target="_blank" style="margin-right:8px">Open</a>
+          <button class="pill" onclick="closeModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // small helpers
+    document.getElementById('year').innerText = new Date().getFullYear();
+
+    function toggleNav(){
+      const el = document.getElementById('navLinks');
+      if(el.style.display==='flex'){el.style.display='none'}else{el.style.display='flex';el.style.flexDirection='column';el.style.gap='8px'}
+    }
+
+    // portfolio filter
+    function showFilter(key){
+      ['web','posters','logos','branding'].forEach(k=>{
+        const el = document.getElementById('filter-'+k);
+        if(!el) return;
+        el.style.display = (k===key)?'block':'none';
+      })
+      // scroll to portfolio
+      document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})
+    }
+
+    // modal
+    function openModal(title,desc,src,link){
+      const modal = document.getElementById('modal');
+      document.getElementById('modalImg').src = src;
+      document.getElementById('modalTitle').innerText = title || '';
+      document.getElementById('modalDesc').innerText = desc || '';
+      const ml = document.getElementById('modalLink');
+      if(link){ml.href = link; ml.style.display='inline-block'}else{ml.style.display='none'}
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden','false');
+    }
+    function closeModal(){
+      const modal = document.getElementById('modal');
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden','true');
+    }
+    document.getElementById('modal').addEventListener('click', (e)=>{ if(e.target.id==='modal') closeModal() })
+
+    // carousel auto scroll
+    (function initCarousel(){
+      const track = document.getElementById('carouselTrack');
+      if(!track) return;
+      let pos = 0;
+      const speed = 1; // pixels per tick
+      function step(){
+        pos += speed;
+        if(pos > track.scrollWidth/2) pos = 0;
+        track.style.transform = `translateX(-${pos}px)`;
+      }
+      // duplicate children so scroll feels infinite
+      const clone = track.innerHTML;
+      track.innerHTML += clone;
+      setInterval(step,20);
+    })();
+
+    // contact handler (opens mail client with prefilled content)
+    function handleContact(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim() || 'New project inquiry';
+      const message = document.getElementById('message').value.trim();
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+      window.location.href = `mailto:business.techmsafi@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+    }
+
+    // default show websites
+    showFilter('web');
+  </script>
+</body>
+</html>

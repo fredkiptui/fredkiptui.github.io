@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fred Kiptui — Techmsafi • Smart Design, Smart Code</title>
+  <meta name="description" content="Techmsafi — Clean, smart digital solutions. Logo & brand identity, graphic design, and WordPress websites.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="Assets/logo.png" />
+
+  <!-- Theme colors -->
+  <meta name="theme-color" content="#0A66C2" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b1220; /* user suggested background */
+      --tech-blue:#0A66C2;
+      --clean-green:#00C853;
+      --muted:#98a2b3;
+      --glass: rgba(255,255,255,0.04);
+      --card: rgba(255,255,255,0.03);
+      --radius: 14px;
+      --ff: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--ff);
+      background: linear-gradient(180deg,var(--bg) 0%, #071021 100%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      padding:24px;
+    }
+
+    /* Container */
+    .site{
+      max-width:1100px;
+      margin:0 auto;
+      padding:24px;
+    }
+
+    /* NAV */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:28px;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{width:48px;height:48px;border-radius:10px;object-fit:cover}
+    .brand .title{font-weight:700;font-size:18px;line-height:1}
+    .brand .slogan{font-size:12px;color:var(--muted);margin-top:2px}
+
+    nav ul{display:flex;gap:14px;align-items:center;list-style:none;padding:0;margin:0}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    nav a:hover{color:var(--tech-blue)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;margin-bottom:36px}
+    @media (max-width:900px){.hero{grid-template-columns:1fr;}}
+
+    .intro{background:linear-gradient(90deg, rgba(10,102,194,0.12), rgba(0,200,83,0.06));padding:28px;border-radius:var(--radius)}
+    .intro h1{margin:0;font-size:32px}
+    .intro p{color:var(--muted);margin-top:12px}
+
+    .cta-row{display:flex;gap:12px;margin-top:18px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
+    .btn-primary{background:linear-gradient(90deg,var(--tech-blue),#0062b6);color:white}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+    .photo-card{background:var(--card);padding:18px;border-radius:18px;display:flex;flex-direction:column;align-items:center;gap:10px}
+    .photo-card img{width:220px;height:220px;object-fit:cover;border-radius:14px;border:2px solid rgba(255,255,255,0.03)}
+    .photo-card .name{font-weight:700}
+    .photo-card .role{color:var(--muted);font-size:13px}
+
+    /* Skills */
+    .skills{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .chip{background:var(--glass);padding:8px 10px;border-radius:999px;font-weight:600;font-size:13px;color:var(--muted)}
+
+    /* Projects */
+    .section{margin-bottom:36px}
+    .section h2{margin:0 0 14px 0}
+    .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    @media (max-width:800px){.projects-grid{grid-template-columns:1fr}}
+
+    .project{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:12px;border-radius:12px;display:flex;gap:12px;align-items:center}
+    .project img{width:120px;height:72px;object-fit:cover;border-radius:8px}
+    .project .meta{flex:1}
+    .project .meta h3{margin:0;font-size:15px}
+    .project .meta p{margin:6px 0 0 0;color:var(--muted);font-size:13px}
+    .project .actions{display:flex;gap:8px}
+
+    /* Gallery */
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    @media (max-width:900px){.gallery{grid-template-columns:repeat(2,1fr)}}
+    .thumb{height:140px;background:#0e1724;border-radius:10px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+    .thumb img{width:100%;height:100%;object-fit:cover}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
+    @media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
+    form{background:var(--card);padding:18px;border-radius:12px}
+    label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit}
+    textarea{min-height:120px}
+
+    footer{margin-top:48px;padding:18px;border-radius:12px;text-align:center;color:var(--muted)}
+
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(3,6,12,0.6);display:none;align-items:center;justify-content:center}
+    .modal{background:#071422;padding:18px;border-radius:12px;max-width:920px;width:94%;}
+    .modal img{width:100%;height:auto;border-radius:8px}
+
+    /* small utilities */
+    .muted{color:var(--muted)}
+    .kbd{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:6px;font-weight:700}
+
+    /* little animations */
+    .fade-up{opacity:0;transform:translateY(8px);transition:all 450ms cubic-bezier(.2,.9,.25,1)}
+    .fade-up.in{opacity:1;transform:none}
+  </style>
+</head>
+<body>
+  <div class="site">
+
+    <header>
+      <div class="brand">
+        <img src="Assets/logo.png" alt="Techmsafi logo" />
+        <div>
+          <div class="title">Techmsafi</div>
+          <div class="slogan">Smart Design, Smart Code</div>
+        </div>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#projects">Work</a></li>
+          <li><a href="#designs">Design Gallery</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+
+      <section class="hero">
+        <div class="intro fade-up" id="intro">
+          <h1>Hi — I’m <span style="color:var(--tech-blue)">Fred Kiptui</span>, Founder of <strong>Techmsafi</strong></h1>
+          <p>I design clean, modern brand identities and build reliable WordPress websites. I blend smart design with smart code to help small businesses grow online.</p>
+
+          <div class="skills" aria-hidden>
+            <div class="chip">Logo & Branding</div>
+            <div class="chip">WordPress</div>
+            <div class="chip">WooCommerce</div>
+            <div class="chip">Canva Workshops</div>
+            <div class="chip">UI/UX Prototyping</div>
+          </div>
+
+          <div class="cta-row">
+            <button class="btn btn-primary" id="hireBtn">Hire Me</button>
+            <a class="btn btn-ghost" href="https://fredgraphics.vercel.app" target="_blank" rel="noopener">See Design Portfolio</a>
+          </div>
+
+          <p class="muted" style="margin-top:12px;font-size:13px">Currently maintaining: <a href="https://shamaconsult.co.ke" target="_blank" rel="noopener">Shama Consult Africa</a> • <a href="https://centreforprojectknowledge.com" target="_blank" rel="noopener">Africa Centre for Project Knowledge</a></p>
+        </div>
+
+        <aside class="photo-card fade-up">
+          <img src="Assets/Fred.png" alt="Fred Kiptui — Techmsafi">
+          <div class="name">Fred Kiptui</div>
+          <div class="role muted">Founder & Creative Lead</div>
+          <div style="width:100%;margin-top:10px;display:flex;gap:8px;justify-content:center">
+            <a class="kbd" href="mailto:business.techmsafi@gmail.com">Email</a>
+            <a class="kbd" href="tel:+254768832306">WhatsApp</a>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section" id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+
+          <article class="project fade-up">
+            <img src="Assets/shamaconsult-homepage.png" alt="Shama Consult Africa — homepage screenshot">
+            <div class="meta">
+              <h3>Shama Consult Africa</h3>
+              <p class="muted">WordPress site — design & maintenance. Click view to open site.</p>
+            </div>
+            <div class="actions">
+              <a class="btn btn-ghost" href="https://shamaconsult.co.ke" target="_blank" rel="noopener">Open</a>
+              <button class="btn" data-src="Assets/shamaconsult-homepage.png" onclick="openModal(event)">View</button>
+            </div>
+          </article>
+
+          <article class="project fade-up">
+            <img src="Assets/africa-centre-homepage.png" alt="Africa Centre for Project Knowledge — homepage screenshot">
+            <div class="meta">
+              <h3>Africa Centre for Project Knowledge</h3>
+              <p class="muted">WordPress site — redesign & ongoing maintenance.</p>
+            </div>
+            <div class="actions">
+              <a class="btn btn-ghost" href="https://centreforprojectknowledge.com" target="_blank" rel="noopener">Open</a>
+              <button class="btn" data-src="Assets/africa-centre-homepage.png" onclick="openModal(event)">View</button>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <section class="section" id="designs">
+        <h2>Graphic Design Gallery</h2>
+        <p class="muted">Logos, posters and banners created for clients.</p>
+
+        <div class="gallery" style="margin-top:12px">
+          <div class="thumb"><img src="Assets/logo1.png" alt="Logo 1"></div>
+          <div class="thumb"><img src="Assets/logo2.png" alt="Logo 2"></div>
+          <div class="thumb"><img src="Assets/logo3.png" alt="Logo 3"></div>
+          <div class="thumb"><img src="Assets/logo4.png" alt="Logo 4"></div>
+          <div class="thumb"><img src="Assets/logo5.png" alt="Logo 5"></div>
+          <div class="thumb"><img src="Assets/poster1.png" alt="Poster 1"></div>
+          <div class="thumb"><img src="Assets/poster2.png" alt="Poster 2"></div>
+          <div class="thumb"><img src="Assets/poster3.png" alt="Poster 3"></div>
+          <div class="thumb"><img src="Assets/poster4.png" alt="Poster 4"></div>
+          <div class="thumb"><img src="Assets/poster5.png" alt="Poster 5"></div>
+          <div class="thumb"><img src="Assets/banner.png" alt="Banner"></div>
+        </div>
+
+      </section>
+
+      <section class="section" id="services">
+        <h2>Services</h2>
+        <p class="muted">Branding, Graphic Design, WordPress websites, E-commerce, Maintenance, Workshops and Consultancy.</p>
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px">
+          <div style="background:var(--card);padding:12px;border-radius:12px">
+            <h4>Branding</h4>
+            <p class="muted">Logo, identity systems, stationery & brand guides.</p>
+          </div>
+          <div style="background:var(--card);padding:12px;border-radius:12px">
+            <h4>Graphic Design</h4>
+            <p class="muted">Social kits, posters, banners, infographics.</p>
+          </div>
+          <div style="background:var(--card);padding:12px;border-radius:12px">
+            <h4>Web Development</h4>
+            <p class="muted">WordPress, e-commerce, landing pages, SEO basics.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <h2>Contact & Hire</h2>
+        <div class="contact-grid">
+
+          <form id="contactForm" onsubmit="return submitForm(event)">
+            <label for="name">Your name</label>
+            <input id="name" required placeholder="e.g., Jane Mwangi">
+
+            <label for="email">Email</label>
+            <input id="email" type="email" required placeholder="your@email.com">
+
+            <label for="message">Message</label>
+            <textarea id="message" required placeholder="Brief description of project or request"></textarea>
+
+            <div style="display:flex;gap:10px;margin-top:12px">
+              <button class="btn btn-primary" type="submit">Send Message</button>
+              <button class="btn btn-ghost" type="button" onclick="startWhatsApp()">Message on WhatsApp</button>
+            </div>
+          </form>
+
+          <aside style="padding:18px;background:linear-gradient(0deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px">
+            <h3>Quick contact</h3>
+            <p class="muted">WhatsApp: <strong>+254 768 832306</strong></p>
+            <p class="muted">Email: <strong>business.techmsafi@gmail.com</strong></p>
+            <p class="muted">Location: Nakuru / Nairobi (available for onsite consults)</p>
+
+            <div style="margin-top:12px">
+              <a class="btn btn-primary" href="mailto:business.techmsafi@gmail.com">Email Me</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div style="display:flex;align-items:center;gap:12px;justify-content:center">
+        <img src="Assets/logo.png" style="width:34px;height:34px;border-radius:8px" alt="Techmsafi"/>
+        <div style="text-align:left">
+          <div style="font-weight:700">Fred Kiptui — Techmsafi</div>
+          <div class="muted">Smart Design, Smart Code • © <span id="year"></span></div>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Modal backdrop -->
+  <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-hidden="true">
+    <div class="modal" role="document">
+      <button style="float:right;background:transparent;border:0;color:var(--muted);font-weight:700;margin-bottom:10px" onclick="closeModal()">Close ✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // small helpers & interactivity
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // animate fade-up elements into view
+    function animateIn(){
+      document.querySelectorAll('.fade-up').forEach((el,i)=>{
+        setTimeout(()=>el.classList.add('in'), 80*i);
+      });
+    }
+    window.addEventListener('load',animateIn);
+
+    // Modal logic
+    function openModal(e){
+      const src = e.currentTarget?.dataset?.src || e.dataset?.src;
+      const modal = document.getElementById('modalBackdrop');
+      const content = document.getElementById('modalContent');
+      content.innerHTML = `<img src="${src}" alt="Preview">`;
+      modal.style.display = 'flex';
+      modal.setAttribute('aria-hidden','false');
+    }
+    function closeModal(){
+      const modal = document.getElementById('modalBackdrop');
+      modal.style.display = 'none';
+      modal.setAttribute('aria-hidden','true');
+      document.getElementById('modalContent').innerHTML = '';
+    }
+    document.getElementById('modalBackdrop').addEventListener('click',function(e){
+      if(e.target === this) closeModal();
+    });
+
+    // Contact form (simple client-side behavior)
+    function submitForm(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      if(!name || !email || !message){
+        alert('Please fill all fields');
+        return false;
+      }
+      // Create a mailto link as quick lightweight action
+      const subject = encodeURIComponent('Website contact from ' + name);
+      const body = encodeURIComponent(message + '\n\nContact email: ' + email);
+      window.location.href = `mailto:business.techmsafi@gmail.com?subject=${subject}&body=${body}`;
+      return false;
+    }
+
+    function startWhatsApp(){
+      const text = encodeURIComponent('Hi, I am interested in your design/web services.');
+      window.open('https://wa.me/254768832306?text=' + text, '_blank');
+    }
+
+    // Smooth anchor scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        e.preventDefault();
+        const id = this.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+      });
+    });
+
+    // Quick hire CTA opens contact
+    document.getElementById('hireBtn').addEventListener('click', ()=>{
+      document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+      document.getElementById('name').focus();
+    });
+
+    // Accessibility: escape closes modal
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>
